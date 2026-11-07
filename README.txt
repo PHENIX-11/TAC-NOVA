@@ -1,42 +1,28 @@
-TAC//NOVA — V3.0 PLAYER IDENTITY + ONLINE ROOMS
+TAC//NOVA — V3.2 ONLINE SYNC + RECONNECT PATCH
 
-RUNNING THE GAME
-1. Extract the ZIP into a folder.
-2. For local play, open index.html in a modern browser.
-3. For online multiplayer, run the site from localhost or host it on an HTTPS website. Do not open the file directly for online play.
+INSTALL / DEPLOY
+1. Extract this ZIP into a fresh folder.
+2. Upload the contents of the inner tac_nova folder (index.html, style.css, script.js, README.txt) to the ROOT of your GitHub repository, replacing the previous files.
+3. Commit the changes to the main branch and wait for GitHub Pages to finish deploying.
+4. Both players must open the same HTTPS site URL. Do not use a local file:// URL for online play.
 
-LOCAL PLAYER PROFILE
-- On first launch, TAC//NOVA creates a local player ID (TN-XXXXXX).
-- Open the profile icon to edit display name, avatar sigil and profile energy colour.
-- The profile ID is stored only in this browser. It is not an account login and does not contain personal information.
-- Use the profile ID as your player identity; it is not the online room address.
+ONLINE ROOM PLAY
+1. Both players open ARENA > ONLINE ROOM.
+2. Player One selects CREATE ROOM and waits for ROOM READY.
+3. Player One copies the temporary Room ID and shares it with Player Two.
+4. Player Two pastes the Room ID and selects JOIN ROOM.
+5. Player One plays X; Player Two plays O.
+6. Keep both tabs open while playing. If a player disconnects, the host should keep the room tab open; the guest can retry joining with the same Room ID if the host room is still active.
 
-FIRST-TIME TUTORIAL
-- A tutorial opens automatically the first time this browser runs the game.
-- Reopen it at any time with HOW TO PLAY on the home screen.
+V3.2 FIXES
+- Host now sends an authoritative full-board state after its move.
+- Guest move requests are validated and applied by the host, then the host broadcasts the updated state to both players.
+- Winning/draw state is included in synchronization.
+- Closed/error connections clear the stored connection reference, so the host can accept a fresh connection instead of rejecting every later join attempt.
+- Connection and send errors show clearer status messages.
 
-ONLINE ROOM MULTIPLAYER
-1. Both players open the same TAC//NOVA website using a modern browser and internet access.
-2. Both select ARENA > ONLINE ROOM.
-3. Player One selects CREATE ROOM and waits for ROOM READY.
-4. Player One copies the temporary Room ID and shares it with Player Two.
-5. Player Two pastes the Room ID and selects JOIN ROOM.
-6. Player One uses X; Player Two uses O. Moves are synchronized over a WebRTC data connection.
-7. Either player can leave the room using LEAVE ONLINE ROOM.
-
-NETWORK REQUIREMENTS / LIMITATIONS
-- Online mode uses PeerJS for signaling and WebRTC for the direct game connection. It requires internet access and loads PeerJS from the unpkg CDN.
-- The room ID is temporary and changes when a new room is created. The permanent TN profile ID is not used to connect a match.
-- For online play, serve the files over HTTPS or localhost. Example on a computer with Python installed: open a terminal in this folder and run `python -m http.server 8000`, then open `http://localhost:8000` on that same computer. For friends on different networks, publish the folder to an HTTPS static host.
-- Some restrictive networks/firewalls may block direct WebRTC connections. A TURN relay server may be needed for those networks; this starter build does not include a paid TURN service.
-- This build has no central account database, chat, or cloud profile sync. Player profile and records remain in each browser.
-- Use a nickname, not a real full name or contact details.
-
-FEATURES RETAINED
-- Local two-player and AI play; 3x3, 4x4 and 5x5 grids.
-- Custom X/O glyphs and colours, themes, board styles and glow settings.
-- Win-line strike, sparkles, celebration splash, synthesized fanfare and screenshot export.
-- Local stats, history, undo and rematch.
-
-TESTING NOTE
-JavaScript syntax and ZIP integrity are checked. Real multiplayer requires testing from two separate browsers/devices over an HTTPS-hosted build; network behavior can vary by firewall and NAT.
+IMPORTANT LIMITATIONS
+- Online mode uses PeerJS for signaling and WebRTC for the direct game connection. PeerJS loads from the unpkg CDN and requires internet access.
+- Some routers, school/work networks, VPNs or firewalls block direct WebRTC. Those networks may require a TURN relay server; this build does not include a dedicated TURN service.
+- The room ID is temporary and exists only while the host's browser session remains connected. The permanent TN player ID is local profile identity, not the room address.
+- This version has not been live-tested between two separate devices in different networks. JavaScript syntax and ZIP integrity are checked; test on two devices after deployment.
