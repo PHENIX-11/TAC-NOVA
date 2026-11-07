@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#070914" />
+<title>TAC//NOVA — Think. Place. Dominate.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+<div class="grain"></div><div id="particles" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<header class="topbar">
+  <a class="brand" href="#" aria-label="TAC NOVA home"><span class="brand-mark">✳</span><span>TAC<span class="slash">//</span>NOVA</span></a>
+  <nav><button class="nav-link active" data-view="home">HOME</button><button class="nav-link" data-view="arena">ARENA</button><button class="nav-link" data-view="records">RECORDS</button></nav>
+  <div class="top-actions"><span class="live-pill"><i></i> SYSTEM ONLINE</span><button class="icon-btn profile-top" id="profileBtn" aria-label="Player profile">◉</button><button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙</button></div>
+</header>
+
+<main>
+<section class="view active" id="homeView">
+  <div class="hero">
+    <div class="eyebrow"><span class="eyebrow-line"></span> THE CLASSIC, RE-ENGINEERED <span class="eyebrow-line"></span></div>
+    <h1>THINK<span class="gradient-text">.</span><br>PLACE<span class="gradient-text">.</span><br><span class="outline-text">DOMINATE.</span></h1>
+    <p class="hero-copy">A new dimension of the classic game.<br>One grid. Two minds. Infinite possibilities.</p>
+    <div class="hero-actions"><button class="primary-btn" id="launchBtn">ENTER THE ARENA <span>↗</span></button><button class="secondary-btn" id="howBtn">HOW TO PLAY <span>＋</span></button></div>
+    <div class="hero-meta"><span><b>01</b> STRATEGY</span><span><b>02</b> PRECISION</span><span><b>03</b> VICTORY</span></div>
+  </div>
+  <div class="hero-visual">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+    <div class="hero-board" aria-hidden="true">
+      <div class="mini-cell cyan">×</div><div class="mini-cell"></div><div class="mini-cell violet">○</div>
+      <div class="mini-cell"></div><div class="mini-cell cyan">×</div><div class="mini-cell"></div>
+      <div class="mini-cell violet">○</div><div class="mini-cell"></div><div class="mini-cell cyan">×</div>
+    </div>
+    <div class="float-label label-a"><span class="pulse-dot"></span> GRID ENGINE <b>ACTIVE</b></div>
+    <div class="float-label label-b">NEURAL LINK <b>CONNECTED</b></div>
+    <div class="visual-caption">TACTICAL SIMULATION <span>/// 001</span></div>
+  </div>
+  <div class="home-bottom"><div><span class="tiny-label">YOUR MISSION</span><p>Outthink the opponent. Own the grid.</p></div><div class="scroll-hint">SCROLL TO EXPLORE <span>↓</span></div></div>
+  <div class="feature-strip"><div><span>01 / INSTANT PLAY</span><b>No account. No waiting.</b></div><div><span>02 / SMART OPPONENT</span><b>Challenge the AI core.</b></div><div><span>03 / YOUR RECORD</span><b>Your progress stays here.</b></div></div>
+</section>
+
+<section class="view" id="arenaView">
+  <div class="section-head"><div><div class="eyebrow left"><span class="eyebrow-line"></span> COMBAT INTERFACE</div><h2>THE <span class="gradient-text">ARENA</span></h2><p>Configure your match. Then make your move.</p></div><div class="arena-code">MATCH PROTOCOL <b>TN-001</b></div></div>
+  <div class="arena-layout">
+    <aside class="control-panel glass-panel">
+      <div class="panel-title">MATCH CONFIGURATION <span>● READY</span></div>
+      <label class="field-label">GAME MODE</label>
+      <div class="segmented" id="modeSwitch"><button class="selected" data-mode="local">LOCAL DUEL</button><button data-mode="ai">VS AI</button><button data-mode="online">ONLINE ROOM</button></div>
+      <div class="room-console" id="roomConsole" hidden><div class="room-console-head"><b>◈ NETWORK GATEWAY</b><span id="networkStatus">OFFLINE</span></div><p>Host a room and share its room ID, or enter a friend’s ID to join.</p><div class="room-actions"><button type="button" class="secondary-btn" id="hostRoomBtn">CREATE ROOM</button><button type="button" class="secondary-btn" id="joinRoomBtn">JOIN ROOM</button></div><div class="room-id-row"><input id="roomIdInput" type="text" placeholder="PASTE ROOM ID" autocomplete="off" aria-label="Room ID"><button type="button" id="copyRoomBtn">COPY</button></div><small id="roomHelp">Your temporary room ID appears here when you host.</small><button type="button" class="text-btn" id="leaveRoomBtn">LEAVE ONLINE ROOM</button></div>
+      <label class="field-label">GRID SIZE</label>
+      <div class="size-options" id="sizeSwitch"><button class="selected" data-size="3">3 × 3</button><button data-size="4">4 × 4</button><button data-size="5">5 × 5</button></div>
+      <label class="field-label">AI INTELLIGENCE</label>
+      <div class="select-wrap"><select id="difficulty"><option value="easy">ROOKIE</option><option value="medium" selected>TACTICIAN</option><option value="hard">NOVA CORE</option></select><span>⌄</span></div>
+      <div class="player-config"><div class="player-row"><span class="player-symbol x-symbol">×</span><div><small>PLAYER ONE</small><b id="p1Name">CYAN / X</b></div><span class="player-status">YOU</span></div><div class="player-row"><span class="player-symbol o-symbol">○</span><div><small>PLAYER TWO</small><b id="p2Name">VIOLET / O</b></div><span class="player-status" id="p2Type">LOCAL</span></div></div>
+      <button class="primary-btn full-btn" id="newGameBtn">INITIALIZE MATCH <span>↗</span></button>
+      <button class="text-btn" id="resetScoresBtn">RESET LOCAL RECORDS</button>
+    </aside>
+    <div class="game-stage">
+      <div class="match-bar"><div><span class="tiny-label">CURRENT MATCH</span><b id="matchStatus">PLAYER ONE'S TURN</b></div><div class="turn-indicator"><span class="turn-dot cyan-dot" id="turnDot"></span><span id="turnName">CYAN</span></div></div>
+      <div class="board-shell"><div class="board" id="board" role="grid" aria-label="Tic Tac Toe board"></div><div class="board-scan"></div></div>
+      <div class="game-footer"><span id="moveCount">MOVES 00</span><span>TOUCH / CLICK TO DEPLOY</span><button id="undoBtn" class="undo-btn">↶ UNDO</button></div>
+      <div class="result-banner" id="resultBanner"><span id="resultIcon">✦</span><div><b id="resultTitle">VICTORY</b><small id="resultText">A decisive move.</small></div><button id="rematchBtn">REMATCH ↗</button></div>
+    </div>
+    <aside class="stats-panel glass-panel">
+      <div class="panel-title">LIVE TELEMETRY <span>◈</span></div>
+      <div class="score-block"><span class="tiny-label">YOUR WINS</span><strong id="winsStat">00</strong><div class="stat-line"><i id="winsBar"></i></div></div>
+      <div class="score-block"><span class="tiny-label">DRAWS</span><strong id="drawsStat">00</strong><div class="stat-line neutral"><i id="drawsBar"></i></div></div>
+      <div class="score-block"><span class="tiny-label">LOSSES</span><strong id="lossesStat">00</strong><div class="stat-line violet-line"><i id="lossesBar"></i></div></div>
+      <div class="telemetry-note"><span class="pulse-dot"></span><div><b>LOCAL STORAGE</b><small>Records saved on this device.</small></div></div>
+    </aside>
+  </div>
+</section>
+
+<section class="view" id="recordsView">
+  <div class="section-head"><div><div class="eyebrow left"><span class="eyebrow-line"></span> PLAYER DATA</div><h2>YOUR <span class="gradient-text">RECORD</span></h2><p>Your arena history, stored locally on this device.</p></div></div>
+  <div class="record-grid"><div class="record-card"><span>VICTORIES</span><b id="recordWins">00</b><small>Matches won</small></div><div class="record-card"><span>DRAWS</span><b id="recordDraws">00</b><small>Evenly matched</small></div><div class="record-card"><span>DEFEATS</span><b id="recordLosses">00</b><small>Lessons learned</small></div><div class="record-card"><span>TOTAL MATCHES</span><b id="recordTotal">00</b><small>All completed games</small></div></div>
+  <div class="history-panel glass-panel"><div class="panel-title">RECENT MATCHES <span>LAST 10</span></div><div id="historyList" class="history-list"><div class="empty-history">NO MATCH DATA YET. YOUR FIRST MATCH AWAITS.</div></div></div>
+</section>
+</main>
+
+<footer><span>© 2026 TAC//NOVA</span><span>BUILT FOR THE NEXT MOVE <b>✳</b></span><span>VERSION 1.0.0</span></footer>
+
+<div class="modal-backdrop" id="settingsModal"><div class="modal glass-panel"><button class="modal-close" data-close>×</button><div class="eyebrow left"><span class="eyebrow-line"></span> SYSTEM PREFERENCES</div><h3>CONTROL <span class="gradient-text">ROOM</span></h3><div class="setting-row"><div><b>Sound effects</b><small>Interface and move sounds</small></div><button class="toggle on" id="soundToggle"></button></div><div class="setting-row"><div><b>Motion effects</b><small>Particles and ambient movement</small></div><button class="toggle on" id="motionToggle"></button></div><div class="setting-row"><div><b>Visual theme</b><small>Choose your arena atmosphere</small></div><select id="themeSelect"><option value="nova">NOVA / Cyan + Violet</option><option value="emerald">QUANTUM / Emerald</option><option value="amber">SOLAR / Amber</option><option value="crimson">RIFT / Plasma Red</option><option value="ice">GLACIER / Arctic Blue</option><option value="matrix">MATRIX / Acid Green</option></select></div><div class="setting-row"><div><b>Board architecture</b><small>Change the arena surface</small></div><select id="boardSelect"><option value="holo">HOLOGRID</option><option value="hex">HEX-CIRCUIT</option><option value="void">VOID GLASS</option></select></div><div class="setting-row"><div><b>Signal glyphs</b><small>Choose your X / O identity</small></div><select id="glyphSelect"><option value="nova">NOVA SIGILS</option><option value="rune">ANCIENT RUNES</option><option value="orbit">ORBITAL CORES</option></select></div><div class="setting-row"><div><b>Player One identity</b><small>Shape language for your X signal</small></div><select id="xGlyphSelect"><option value="blade">PHOTON BLADES</option><option value="shard">CRYSTAL SHARD</option><option value="rune">VOID RUNE</option><option value="orbit">DUAL ORBIT</option><option value="pulse">PULSE CORE</option><option value="classic">CLASSIC CROSS</option></select></div><div class="setting-row"><div><b>Player Two identity</b><small>Shape language for your O signal</small></div><select id="oGlyphSelect"><option value="reactor">REACTOR RING</option><option value="prism">PRISM GATE</option><option value="rune">VOID SEAL</option><option value="orbit">ORBITAL CORE</option><option value="pulse">PULSE PORTAL</option><option value="classic">CLASSIC ORB</option></select></div><div class="setting-row"><div><b>Player One energy</b><small>Custom X signal colour</small></div><input class="color-input" type="color" id="xColor" value="#5cecff" aria-label="Player one X colour"></div><div class="setting-row"><div><b>Player Two energy</b><small>Custom O signal colour</small></div><input class="color-input" type="color" id="oColor" value="#a68bff" aria-label="Player two O colour"></div><div class="setting-row"><div><b>Energy intensity</b><small>Set the glow output</small></div><select id="glowSelect"><option value="low">LOW</option><option value="medium" selected>HIGH</option><option value="max">OVERDRIVE</option></select></div><p class="modal-foot">All visual systems are remembered on this device.</p></div></div>
+<div class="modal-backdrop" id="profileModal"><div class="modal glass-panel"><button class="modal-close" data-close>×</button><div class="eyebrow left"><span class="eyebrow-line"></span> PLAYER IDENTITY</div><h3>YOUR <span class="gradient-text">PROFILE</span></h3><div class="profile-preview"><div id="profileAvatarPreview">✦</div><div><b id="profileNamePreview">NOVA PILOT</b><small id="profileIdPreview">TN-000000</small></div></div><label class="field-label" for="profileNameInput">DISPLAY NAME</label><input class="profile-input" id="profileNameInput" maxlength="18" placeholder="Choose a display name"><label class="field-label" for="profileAvatarSelect">AVATAR SIGIL</label><select id="profileAvatarSelect"><option value="✦">NOVA STAR</option><option value="◈">ORBIT CORE</option><option value="⬡">HEX PILOT</option><option value="⚡">VOLT RUNNER</option><option value="✧">PRISM</option><option value="☄">COMET</option></select><label class="field-label" for="profileColorInput">PROFILE ENERGY</label><input class="color-input" id="profileColorInput" type="color" value="#5cecff"><div class="profile-id-box"><small>YOUR PLAYER ID · THIS DEVICE</small><b id="profileIdValue">TN-000000</b><button type="button" id="copyProfileIdBtn">COPY ID</button></div><button class="primary-btn full-btn" id="saveProfileBtn">SAVE PROFILE <span>↗</span></button><p class="modal-foot">Your player profile is saved in this browser. No email, phone number or personal details required.</p></div></div>
+<div class="modal-backdrop" id="howModal"><div class="modal glass-panel tutorial-modal"><button class="modal-close" data-close>×</button><div class="eyebrow left"><span class="eyebrow-line"></span> QUICK BRIEFING</div><h3>HOW TO <span class="gradient-text">PLAY</span></h3><p class="briefing">Welcome to TAC//NOVA. Your first mission is simple: outthink your opponent and claim a winning line.</p><div class="tutorial-steps"><div><b>01</b><span>CHOOSE YOUR MODE</span><small>Local Duel, VS AI, or Online Room.</small></div><div><b>02</b><span>DEPLOY YOUR SIGIL</span><small>Tap an empty cell to place your symbol. Turns alternate.</small></div><div><b>03</b><span>CLAIM THE GRID</span><small>Connect the required symbols in a row, column or diagonal.</small></div><div><b>04</b><span>PLAY ACROSS THE INTERNET</span><small>One player creates a room and shares the room ID. The other joins using that ID.</small></div></div><div class="brief-row"><span class="x-symbol">×</span><p><b>CYAN / X</b><small>Player one moves first.</small></p></div><div class="brief-row"><span class="o-symbol">○</span><p><b>VIOLET / O</b><small>Player two takes the next turn.</small></p></div><p class="briefing">3×3 requires 3 in a row. Larger grids require 4 in a row. If the board fills with no winner, the match is a draw.</p><button class="primary-btn full-btn" data-close>GOT IT <span>↗</span></button></div></div>
+<div class="celebration-backdrop" id="celebration" aria-hidden="true"><div class="celebration-card"><div class="celebration-orbit orbit-a"></div><div class="celebration-orbit orbit-b"></div><button class="celebration-close" id="celebrationClose" aria-label="Close celebration">×</button><div class="celebration-kicker">MATCH PROTOCOL COMPLETE</div><div class="celebration-emblem" id="celebrationEmblem">✦</div><div class="celebration-label" id="celebrationLabel">VICTORY CONFIRMED</div><h2 id="celebrationTitle">GRID CONQUERED</h2><p id="celebrationMessage">A legendary sequence. The arena is yours.</p><div class="celebration-stats"><div><small>MOVES</small><b id="celebrationMoves">05</b></div><div><small>GRID</small><b id="celebrationGrid">3 × 3</b></div><div><small>MODE</small><b id="celebrationMode">LOCAL</b></div></div><div class="celebration-actions"><button class="primary-btn" id="screenshotBtn">CAPTURE MOMENT ▣</button><button class="secondary-btn" id="celebrateAgainBtn">CELEBRATE AGAIN ✦</button><button class="text-btn" id="splashRematchBtn">PLAY NEXT ROUND ↗</button></div><div class="screenshot-note" id="screenshotNote" aria-live="polite">YOUR VICTORY. YOUR MOMENT. SAVE IT.</div></div></div>
+<div class="toast" id="toast"></div>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="script.js"></script>
+</body></html>
