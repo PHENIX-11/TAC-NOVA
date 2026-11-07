@@ -1,0 +1,26 @@
+TAC//NOVA V3.3 — MULTIPLAYER STATE BROADCAST FIX
+
+Root cause fixed:
+The room setup called cleanup(), which set window.__tacBroadcast to null.
+The PeerJS connection could still show CONNECTED and send the initial welcome
+message, but later board moves silently had no broadcast function to call.
+
+Fixes:
+- Restore the broadcast function after room cleanup and before room creation/join.
+- Keep the send function available for host and guest move synchronization.
+- Prevent the guest from locally initializing or rematching an online match;
+  Player One (host) controls round initialization.
+
+Deployment:
+1. Extract this ZIP.
+2. Upload the contents of the inner tac_nova folder to the root of the GitHub
+   repository, replacing the old files.
+3. Commit to main and wait for GitHub Pages to redeploy.
+4. On both devices, close old TAC//NOVA tabs and open:
+   https://phenix-11.github.io/TAC-NOVA/
+5. Press Ctrl+Shift+R on both devices.
+6. Host creates a NEW room. Guest joins using the NEW room ID.
+
+Testing:
+JavaScript syntax is checked. This package has not been live-tested between
+two separate devices, so verify connection and move synchronization after deploy.
